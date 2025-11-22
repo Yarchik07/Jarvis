@@ -14,11 +14,13 @@ def callblack(indata, frames, time, status):
         print(status, file=sys.stderr)
     q.put(bytes(indata))
 
-with sd.RawInputStream(samplerate=samplerate, blocksize=8000, device=device, dtype="int16", channels=1, callback=callblack):
-    rec = vosk.KaldiRecognizer(model, samplerate)
-    while True:
-        data = q.get()
-        if rec.AcceptWaveform(data):
-            print(rec.Result())
-        else:
-            print(rec.PartialResult())
+def va_listen(callback):
+        with sd.RawInputStream(samplerate=samplerate, blocksize=8000, device=device, dtype="int16", channels=1, callback=callblack):
+            rec = vosk.KaldiRecognizer(model, samplerate)
+            while True:
+                data = q.get()
+                if rec.AcceptWaveform(data):
+                    print(rec.Result())
+                else:
+                    print(rec.PartialResult())
+
