@@ -52,7 +52,9 @@ def execute_cmd(cmd: str):
         pass
     elif cmd == "ctime":
          now = datetime.datetime.now()
-         text = "Сей+час " + num2words(now.hour, lang="ru") + ":" + num2words(now.minute, lang="ru")
+         today_date = parcing.d
+         text = "Сей+час " + num2words(now.hour, lang="ru") + ":" + num2words(now.minute, lang="ru") + "      полная дата выведена в терминал"
+         print(today_date)
          voice.va_speak(text)
     elif cmd == "mudrost":
         mudrost = ["Сила – не в бабках. Ведь бабки – уже старые.",
