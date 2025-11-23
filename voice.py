@@ -8,7 +8,7 @@ speaker = "aidar"
 put_accent = True
 put_yo = True
 device = torch.device("cpu")  # cpu или gpu
-text = "Илья лох!"
+text = "Здарова"
 model, _ = torch.hub.load(repo_or_dir="snakers4/silero-models",
                           model="silero_tts",
                           language=language,
