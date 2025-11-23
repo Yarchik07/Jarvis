@@ -17,7 +17,7 @@ def va_respond(voice: str):
     if voice.startswith(conf.va_name):
         cmd = recognize_cmd(filter_cmd(voice))
         if cmd["cmd"] not in conf.va_cmd.keys():
-            voice.va_speak("Что блять?")
+            voice.va_speak("Что?")
         else:
             execute_cmd(cmd["cmd"])
 
@@ -63,9 +63,8 @@ def execute_cmd(cmd: str):
         msedge_path = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe %s'
         webbrowser.get(msedge_path).open("https://www.python.org")
     elif cmd == "weather":
-        text = parcing.temperatureforaudio + " "
-        text += parcing.windforaudio + " "
-        text += parcing.pressureforaudio
+        text = "Данные о температуре, скорости ветра и давлении выведены в терминал"
+        print(parcing.t)
         voice.va_speak(text)
 # начать прослушивание команд
 Beta.va_listen(va_respond)
