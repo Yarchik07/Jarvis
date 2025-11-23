@@ -16,7 +16,7 @@ model, _ = torch.hub.load(repo_or_dir="snakers4/silero-models",
 model.to(device)
 
 def va_speak(what: str):
-    audio = model.apply_tts(text=text,
+    audio = model.apply_tts(text=what + "..",
                             speaker=speaker,
                             sample_rate=sample_rate,
                             put_accent=put_accent,
