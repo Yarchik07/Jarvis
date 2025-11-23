@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+from num2words import num2words
 
 def get_weather_by_ip():
     ip_response = requests.get('http://ip-api.com/json/', timeout=5)
@@ -22,20 +23,21 @@ def get_weather_by_ip():
 
     # Температура, ветер, давление для озвучки
     if temperatures:
-        temperatureforaudio = (f"Текущая температура: {temperatures[0]}")
+        temperatureforaudio = (temperatures[0])
     else:
         temperatureforaudio = ('Температура не определена')
     
     if wind:
         clean_wind = wind[0].lstrip('0')
-        windforaudio = (f"Ветер: {clean_wind}")
+        windforaudio = (clean_wind)
     else:
         windforaudio = ('Ветер не определен')
     
     if pressure:
-        pressureforaudio = (f"Давление: {pressure[0]}")
+        pressureforaudio = (pressure[0])
     else:
         pressureforaudio = ('Давление не определено')
+    return temperatureforaudio, windforaudio, pressureforaudio
 
 def get_datetime():
     url = "https://www.timeserver.ru/"
@@ -96,3 +98,5 @@ def get_news_from_lenta_working():
     
     # Переменная с последними 3 новостями.
     latest_news = last_three_news
+t = get_weather_by_ip()
+print(t)
