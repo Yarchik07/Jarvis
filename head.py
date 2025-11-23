@@ -18,7 +18,7 @@ def va_respond(voice: str):
         if cmd["cmd"] not in conf.va_cmd.keys():
             voice.va_speak("Что блять?")
         else:
-            execute_cmd(cmd(["cmd"]))
+            execute_cmd(cmd["cmd"])
 
 def filter_cmd(raw_voice: str):
     cmd = raw_voice
@@ -51,7 +51,7 @@ def execute_cmd(cmd: str):
         pass
     elif cmd == "ctime":
          now = datetime.datetime.now()
-         text = "Сейчас " + (now.hour) + " " + (now.minute)
+         text = "Сейчас " + str(now.hour) + ":" + str(now.minute)
          voice.va_speak(text)
     elif cmd == "mudrost":
         mudrost = ["Сила – не в бабках. Ведь бабки – уже старые.",
