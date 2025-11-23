@@ -4,6 +4,8 @@ import voice
 from fuzzywuzzy import fuzz
 import parcing
 import random
+import datetime
+import webbrowser
 
 
 print(f"{conf.va_intro} начал свою работу . . .")
@@ -48,15 +50,17 @@ def execute_cmd(cmd: str):
         voice.va_speak(text)
         pass
     elif cmd == "ctime":
-        text = "Сейчас" + parcing.timeforaudio
-        voice.va_speak(text)
+         now = datetime.datetime.now()
+         text = "Сейчас " + (now.hour) + " " + (now.minute)
+         voice.va_speak(text)
     elif cmd == "mudrost":
         mudrost = ["Сила – не в бабках. Ведь бабки – уже старые.",
                    "В жизни всегда есть две дороги: одна — первая, а другая — вторая.",
                    "Делай, как надо. Как не надо, не делай."]
         voice.va_speak(random.choice(mudrost))
     elif cmd == "open_browser":
-        pass
+        chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
+        webbrowser.get(chrome_path).open("http://python.org")
     elif cmd == "weather":
         text = parcing.temperatureforaudio + " "
         text += parcing.windforaudio + " "
