@@ -14,21 +14,85 @@ def get_weather_by_ip():
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
     all_text = soup.get_text()
-    # Поиск значений
+    
+
     temperatures = re.findall(r'[+-]?\d+°', all_text)
-    wind = re.findall(r'\d+[.,]?\d*\s*м/с', all_text)
-    pressure = re.findall(r'\d+\s*мм', all_text)
-    # Температура, ветер, давление
+    wind = re.findall(r'\b\d[.,]\d\s*м/с', all_text)
+    pressure = re.findall(r'\b\d{3}\s*мм', all_text)
+
+    # Температура, ветер, давление для озвучки
     if temperatures:
         temperatureforaudio = (f"Текущая температура: {temperatures[0]}")
     else:
-        notemperature = ('Температура не определена')
+        temperatureforaudio = ('Температура не определена')
+    
     if wind:
-        windforaudio = (f"Ветер: {wind[0]}")
+        clean_wind = wind[0].lstrip('0')
+        windforaudio = (f"Ветер: {clean_wind}")
     else:
-        nowind = ('Ветер не определен')
+        windforaudio = ('Ветер не определен')
+    
     if pressure:
         pressureforaudio = (f"Давление: {pressure[0]}")
     else:
-        nopressure = ('Давление не определено')
-get_weather_by_ip()
+        pressureforaudio = ('Давление не определено')
+
+def get_datetime():
+    url = "https://www.timeserver.ru/"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+    
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Парсим время
+    hours_elem = soup.find('span', class_='hours')
+    minutes_elem = soup.find('span', class_='minutes') 
+    
+    # Парсим дату
+    week_day_elem = soup.find('span', attrs={'x-text': 'city.week_day'})
+    date_elem = soup.find('span', attrs={'x-text': 'city.date'})
+    
+    timeforaudio = f"{hours_elem.text}:{minutes_elem.text}"#время для озвучки
+    dateforaudio = f"{week_day_elem.text} {date_elem.text}"#дата для озвучки
+
+
+def get_news_from_lenta_working():
+    url = "https://lenta.ru"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+    
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    # Поиск всех ссылок на новости.
+    all_links = soup.find_all('a', href=True)
+    
+    news_count = 0
+    seen_texts = set()
+    last_three_news = []
+    
+    for link in all_links:
+        if news_count >= 3:
+            break
+            
+        href = link.get('href', '')
+        text = link.get_text(strip=True)
+        
+        # Фильтрация ссылок и поиск коротких новостей.
+        if ('/news/' in href and 
+            text and len(text) > 20 and len(text) < 120 and
+            text not in seen_texts):
+            
+            # Уборка лишнего хлама из текста.
+            clean_text = re.sub(r'\s*\d{1,2}:\d{2}.*$', '', text)
+            clean_text = clean_text.strip()
+            
+            if clean_text:
+                seen_texts.add(clean_text)
+                last_three_news.append(clean_text)
+                news_count += 1
+    
+    # Переменная с последними 3 новостями.
+    latest_news = last_three_news
