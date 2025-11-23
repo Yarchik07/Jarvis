@@ -11,7 +11,7 @@ import webbrowser
 print(f"{conf.va_intro} начал свою работу . . .")
 voice.va_speak("Слушаю тебя, красавчик")
 
-def va_repond(voice: str):
+def va_respond(voice: str):
     print (voice)
     if voice.startswith(conf.va_name):
         cmd = recognize_cmd(filter_cmd(voice))
@@ -67,4 +67,4 @@ def execute_cmd(cmd: str):
         text += parcing.pressureforaudio
         voice.va_speak(text)
 # начать прослушивание команд
-Beta.va_listen(va_repond)
+Beta.va_listen(va_respond)
