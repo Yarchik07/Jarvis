@@ -58,6 +58,7 @@ def get_datetime():
     
     timeforaudio = f"{hours_elem.text}:{minutes_elem.text}"#время для озвучки
     dateforaudio = f"{week_day_elem.text} {date_elem.text}"#дата для озвучки
+    return dateforaudio
 
 
 def get_news_from_lenta_working():
@@ -99,4 +100,6 @@ def get_news_from_lenta_working():
     # Переменная с последними 3 новостями.
     latest_news = last_three_news
 t = get_weather_by_ip()
+d = get_datetime()
 print(t)
+print(get_datetime())
