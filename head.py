@@ -6,6 +6,7 @@ import parcing
 import random
 import datetime
 import webbrowser
+from num2words import num2words
 
 
 print(f"{conf.va_intro} начал свою работу . . .")
@@ -51,7 +52,7 @@ def execute_cmd(cmd: str):
         pass
     elif cmd == "ctime":
          now = datetime.datetime.now()
-         text = "Сейчас " + str(now.hour) + ":" + str(now.minute)
+         text = "Сей+час " + num2words(now.hour, lang="ru") + ":" + num2words(now.minute, lang="ru")
          voice.va_speak(text)
     elif cmd == "mudrost":
         mudrost = ["Сила – не в бабках. Ведь бабки – уже старые.",
@@ -59,8 +60,8 @@ def execute_cmd(cmd: str):
                    "Делай, как надо. Как не надо, не делай."]
         voice.va_speak(random.choice(mudrost))
     elif cmd == "open_browser":
-        chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
-        webbrowser.get(chrome_path).open("http://python.org")
+        msedge_path = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe %s'
+        webbrowser.get(msedge_path).open("https://www.python.org")
     elif cmd == "weather":
         text = parcing.temperatureforaudio + " "
         text += parcing.windforaudio + " "
