@@ -99,7 +99,10 @@ def get_news_from_lenta_working():
     
     # Переменная с последними 3 новостями.
     latest_news = last_three_news
+    return latest_news
 t = get_weather_by_ip()
 d = get_datetime()
-print(t)
-print(get_datetime())
+n = get_news_from_lenta_working()
+#print(t)
+#print(get_datetime())
+#print(get_news_from_lenta_working())
