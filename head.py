@@ -7,13 +7,13 @@ import random
 import datetime
 import webbrowser
 from num2words import num2words
-import timerwikrutubegooglescreen
 from PIL import ImageGrab
 import os
+from urllib.parse import quote
+import time
 
 
 print(f"{conf.va_intro} начал свою работу . . .")
-voice.va_speak("Слушаю тебя, красавчик")
 
 def va_respond(voice: str):
     print(voice)
@@ -76,32 +76,77 @@ def execute_cmd(cmd: str, voice_text: str = ""):
         text = str(parcing.n)
         print(parcing.n)
         voice.va_speak(text)
-    elif cmd == "google_zap":
-        text = str(timerwikrutubegooglescreen.g)
-        voice.va_speak(text)
     elif cmd == "rutube":
-        # Извлекаем поисковый запрос из команды
-        filtered_cmd = filter_cmd(voice_text) if voice_text else ""
-        
-        if filtered_cmd:
-            # Убираем ключевые слова rutube из запроса
-            search_query = filtered_cmd
-            rutube_keywords = ["rutube", "рутьюб", "найди", "поиск", "открой", "рут"]
-            for keyword in rutube_keywords:
-                search_query = search_query.replace(keyword, "").strip()
-            
-            if search_query:
-                result = timerwikrutubegooglescreen.r
-                voice.va_speak(result)
-            else:
-                voice.va_speak("Что именно вы хотите найти на Rutube?")
-        else:
-            # Если просто "открой rutube" без запроса - открываем главную страницу
-            webbrowser.get(msedge_path).open("https://rutube.ru")
-            voice.va_speak("Открываю главную страницу Rutube")
+        voice.va_speak("Открываю рутьюб")
+        f = str(voice_text)
+        rutube_keywords = ["джарвис", "рут", "найди видео о"]
+        for keyword in rutube_keywords:
+            f = f.replace(keyword, "").strip()
+        rutube(f)  
     elif cmd == "screenshot":
         result = screenshot()
         voice.va_speak(result)
+    elif cmd == "wiki":
+        voice.va_speak("Открываю википедию")
+        f = str(voice_text)
+        wiki_keywords = ["джарвис", "вики", "найди информацию о"]
+        for keyword in wiki_keywords:
+            f = f.replace(keyword, "").strip()
+        wikipedia(f)
+    elif cmd == "google":
+        voice.va_speak("Открываю гугл")
+        f = str(voice_text)
+        google_keywords = ["джарвис", "гугл","гугл запрос", "найти в гугл"]
+        for keyword in google_keywords:
+            f = f.replace(keyword, "").strip()
+        google(f)
+    elif cmd == "timer":
+        f = str(voice_text)
+        timer_keywords = ["джарвис", "таймер", "минут", "минуты", "минута", "засеки время"]
+        for keyword in timer_keywords:
+            f = f.replace(keyword, "").strip()
+        timer(f)
+    
+def timer(a):
+    #тут сделать озвучку задайте параметры таймера
+    minutes = num2words(a, lang="ru") #ввод в виде int 
+    total_seconds = minutes * 60
+    if total_seconds <= 0:
+        voice.va_speak("Таймер не запущен")
+        #тут можно сделать озвучку мол таймер не запущен
+        return
+    # Обратный отсчет
+    while total_seconds > 0:
+        time.sleep(1)
+        total_seconds -= 1 
+
+def google(a):
+    # Запрос на гугл
+    zapros = a #это место для ввода данных(голосового, для тебя ярик)(данные должны быть в виде "")
+    #Переводим запрос в ссылку, чтобы браузер распозновал
+    zaprosurl = quote(zapros)
+    #Ссылка на наш запрос
+    googleurl = f"https://www.google.com/search?q={zaprosurl}"
+    #Открытие браузера с нашим запросом
+    w = webbrowser.open(googleurl)
+
+def wikipedia(a):
+    # Запрос для википедии
+    zapros = a #это место для ввода данных(голосового, для тебя ярик)(данные должны быть в виде "")
+    # Переводим запрос в ссылку, чтобы браузер распознавал
+    zaprosurl = quote(zapros)
+    # Ссылка на наш запрос в википедии
+    wikurl = f"https://ru.wikipedia.org/wiki/{zaprosurl}"
+    # Открытие браузера с нашей страницей википедии
+    webbrowser.open(wikurl)
+
+def rutube(a):
+    zapros = a #это место для ввода данных(голосового, для тебя ярик)(данные должны быть в виде "")
+    zaprosurl = quote(zapros)
+    # Прямой URL поиска Rutube
+    rutubeurl = f"https://rutube.ru/search/video/?query={zaprosurl}"
+    webbrowser.open(rutubeurl)
+
 def screenshot(): 
     try:
         desktop = os.path.join(os.path.expanduser("~"), "Desktop")
@@ -109,16 +154,16 @@ def screenshot():
         
         if not os.path.exists(screens_dir):
             os.makedirs(screens_dir)
-            print(f"📁 Создана папка: {screens_dir}")
+            print(f"Создана папка: {screens_dir}")
         
         time = datetime.datetime.now().strftime("%d.%m.%Y_%H-%M-%S")  # Без двоеточий
         file = os.path.join(screens_dir, f"Скриншот_{time}.png")
         
-        print(f"🎯 Целевой файл: {file}")
+        print(f"файл: {file}")
         
         # Делаем скриншот
         screenshot = ImageGrab.grab()
-        print(f"📸 Скриншот сделан, размер: {screenshot.size}")
+        print(f"Скриншот сделан, размер: {screenshot.size}")
         
         # Сохраняем с явным указанием формата
         screenshot.save(file, "PNG")
@@ -127,18 +172,14 @@ def screenshot():
         # Проверяем результат
         if os.path.exists(file):
             file_size = os.path.getsize(file)
-            print(f"✅ УСПЕХ! Файл: {file}")
-            print(f"📊 Размер: {file_size} байт")
+            print(f"Файл: {file}")
+            print(f"Размер: {file_size} байт")
             
             # Автоматически открываем файл
             os.startfile(file)
             return f"Скриншот сохранен и открыт"
-        else:
-            print("❌ Файл не найден после сохранения!")
-            return "Ошибка: файл не создан"
-        
-    except Exception as e:
-        print(f"❌ Критическая ошибка: {e}")
-        return f"Ошибка: {str(e)}"
+    except:
+        print("Ошибка")
+
 # начать прослушивание команд
 Beta.va_listen(va_respond)
