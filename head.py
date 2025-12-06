@@ -81,9 +81,9 @@ def execute_cmd(cmd: str, voice_text: str = ""):
         for keyword in rutube_keywords:
             f = f.replace(keyword, "").strip()
         rutube(f)  
-    elif cmd == "screenshot":
-        result = screenshot()
-        voice.va_speak(result)
+ #   elif cmd == "screenshot":
+ #       result = screenshot()
+ #       voice.va_speak(result)
     elif cmd == "wiki":
         voice.va_speak("Открываю википедию")
         f = str(voice_text)
@@ -105,9 +105,9 @@ def execute_cmd(cmd: str, voice_text: str = ""):
             f = f.replace(keyword, "").strip()
         timer(f)
     elif cmd == "read":
-        voice.va_speak("Ищу файл")
+        voice.va_speak("назовите файл")
         f = str(voice_text)
-        p_keywords = ["джарвис", "прочти файл"]
+        p_keywords = ["джарвис", "два"]
         for keyword in p_keywords:
             f = f.replace(keyword, "").strip()
         read_txt_files(f)
@@ -118,6 +118,24 @@ def execute_cmd(cmd: str, voice_text: str = ""):
         for keyword in p_keywords:
             f = f.replace(keyword, "").strip()
         open_file_or_folder(f)
+    elif cmd == "creat_file":
+        voice.va_speak("Записываю")
+        name = str(voice_text)
+        content = str(voice_text)
+        p_keywords = ["джарвис", "запиши текст"]
+        for keyword in p_keywords:
+            name = name.replace(keyword, "").strip()
+        d_keywords = ["джарвис", "запиши текст",str(name)]
+        for keyword in d_keywords:
+            content = content.replace(keyword, "").strip()
+        quick_txt(name, content)
+
+def quick_txt(name, content):#сюда голосовой ввод
+    path = os.path.join(os.path.expanduser("~"), "Documents", name + '.txt')
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    return path
+
 
 def open_file_or_folder(name):
     # Диски для поиска
