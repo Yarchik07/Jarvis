@@ -13,6 +13,7 @@ from urllib.parse import quote
 import time
 
 
+
 print(f"{conf.va_intro} начал свою работу . . .")
 
 def va_respond(voice: str):
@@ -65,9 +66,6 @@ def execute_cmd(cmd: str, voice_text: str = ""):
                    "В жизни всегда есть две дороги: одна — первая, а другая — вторая.",
                    "Делай, как надо. Как не надо, не делай."]
         voice.va_speak(random.choice(mudrost))
-    elif cmd == "open_browser":
-        msedge_path = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-        webbrowser.get(msedge_path).open("https://www.python.org")
     elif cmd == "weather":
         text = "Данные о температуре, скорости ветра и давлении выведены в терминал"
         print(parcing.t)
@@ -102,14 +100,65 @@ def execute_cmd(cmd: str, voice_text: str = ""):
         google(f)
     elif cmd == "timer":
         f = str(voice_text)
-        timer_keywords = ["джарвис", "таймер", "минут", "минуты", "минута", "засеки время"]
+        timer_keywords = ["джарвис", "таймер", "минут", "минуты", "минута", "засёк"]
         for keyword in timer_keywords:
             f = f.replace(keyword, "").strip()
         timer(f)
+    elif cmd == "read":
+        voice.va_speak("Ищу файл")
+        f = str(voice_text)
+        p_keywords = ["джарвис", "прочти файл"]
+        for keyword in p_keywords:
+            f = f.replace(keyword, "").strip()
+        read_txt_files(f)
+    elif cmd == "open_file":
+        voice.va_speak("Ищу файл для чтения")
+        f = str(voice_text)
+        p_keywords = ["джарвис", "открой файл"]
+        for keyword in p_keywords:
+            f = f.replace(keyword, "").strip()
+        open_file_or_folder(f)
+
+def open_file_or_folder(name):
+    # Диски для поиска
+    drives = ['C:', 'D:', 'E:', 'F:', 'G:']
     
+    for drive in drives:
+        for root, dirs, files in os.walk(drive + '\\'):
+            # Ищем папку
+            if name in dirs:
+                path = os.path.join(root, name)
+                os.startfile(path)
+                return True
+            
+            # Ищем файл
+            for file in files:
+                if name in file:
+                    path = os.path.join(root, file)
+                    os.startfile(path)
+                    return True
+    
+    return False
+
+def read_txt_files(name):
+    drives = ['C:', 'D:', 'E:']
+    
+    for drive in drives:
+        for root, dirs, files in os.walk(drive + '\\'):
+            for file in files:
+                #содержит ли файл то что мы сказали и приписывает .txt
+                if name in file and file.endswith('.txt'):
+                    path = os.path.join(root, file)
+                    with open(path, 'r', encoding='utf-8') as f:
+                        text = f.read()
+                        print(text)
+                        voice.va_speak(text)
+                    
+                #функция работает по принципу поиска файлов
+
 def timer(a):
     #тут сделать озвучку задайте параметры таймера
-    minutes = num2words(a, lang="ru") #ввод в виде int 
+    minutes = a #ввод в виде int 
     total_seconds = minutes * 60
     if total_seconds <= 0:
         voice.va_speak("Таймер не запущен")
