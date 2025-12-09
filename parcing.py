@@ -1,9 +1,17 @@
+"""Это код для парсинга информации с разных сайтов"""
 import requests
 from bs4 import BeautifulSoup
 import re
 from num2words import num2words
 
 def get_weather_by_ip():
+    """Определяет погоду на основе его IP-адреса, используя сервис определения местоположения и Яндекс.Погоду.
+    :returns: Кортеж из трех строк: температура, скорость ветра, атмосферное давление
+    :rtype: tuple[str, str, str]
+    :raises requests.exceptions.RequestException: При ошибках сетевого запроса
+    :raises KeyError: Если в ответе API отсутствуют ожидаемые поля
+    :raises ValueError: Если не удается распарсить данные о погоде
+    :raises Exception: При других ошибках парсинга или обработки данных"""
     ip_response = requests.get('http://ip-api.com/json/', timeout=5)
     ip_data = ip_response.json()
     city = ip_data['city']
@@ -40,6 +48,12 @@ def get_weather_by_ip():
     return temperatureforaudio, windforaudio, pressureforaudio
 
 def get_datetime():
+    """Получает дату и время с внешнего сервера (timeserver.ru) через парсинг веб-страницы и извлечения структурированных данных.
+    :returns: Строка с отформатированной датой для озвучки (день недели и дата)
+    :rtype: str
+    :raises requests.exceptions.RequestException: При ошибках сетевого запроса
+    :raises AttributeError: Если не найдены ожидаемые HTML-элементы на странице
+    :raises Exception: При других ошибках парсинга или обработки данных"""
     url = "https://www.timeserver.ru/"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
@@ -62,6 +76,12 @@ def get_datetime():
 
 
 def get_news_from_lenta_working():
+    """Получает три последние новости с страницы Lenta.ru, фильтруя и очищая заголовки для последующего использования.
+    :returns: Список из трех строк с заголовками последних новостей
+    :rtype: list[str]
+    :raises requests.exceptions.RequestException: При ошибках сетевого запроса к Lenta.ru
+    :raises AttributeError: Если структура страницы изменилась и элементы не найдены
+    :raises Exception: При других ошибках парсинга или обработки данных"""
     url = "https://lenta.ru"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
@@ -103,6 +123,3 @@ def get_news_from_lenta_working():
 t = get_weather_by_ip()
 d = get_datetime()
 n = get_news_from_lenta_working()
-#print(t)
-#print(get_datetime())
-#print(get_news_from_lenta_working())
