@@ -11,6 +11,7 @@ from PIL import ImageGrab
 import os
 from urllib.parse import quote
 import time
+import sound
 
 
 
@@ -81,9 +82,9 @@ def execute_cmd(cmd: str, voice_text: str = ""):
         for keyword in rutube_keywords:
             f = f.replace(keyword, "").strip()
         rutube(f)  
- #   elif cmd == "screenshot":
- #       result = screenshot()
- #       voice.va_speak(result)
+    elif cmd == "screenshot":
+        result = screenshot()
+        voice.va_speak(result)
     elif cmd == "wiki":
         voice.va_speak("Открываю википедию")
         f = str(voice_text)
@@ -99,36 +100,27 @@ def execute_cmd(cmd: str, voice_text: str = ""):
             f = f.replace(keyword, "").strip()
         google(f)
     elif cmd == "timer":
-        f = str(voice_text)
-        timer_keywords = ["джарвис", "таймер", "минут", "минуты", "минута", "засёк"]
-        for keyword in timer_keywords:
-            f = f.replace(keyword, "").strip()
+        voice.va_speak("На сколько минут засечь время?")
+        f = int(input())
         timer(f)
     elif cmd == "read":
-        voice.va_speak("назовите файл")
-        f = str(voice_text)
-        p_keywords = ["джарвис", "два"]
-        for keyword in p_keywords:
-            f = f.replace(keyword, "").strip()
+        voice.va_speak("Назовите файл для чтения")
+        f = str(input())
         read_txt_files(f)
     elif cmd == "open_file":
-        voice.va_speak("Ищу файл для чтения")
-        f = str(voice_text)
-        p_keywords = ["джарвис", "открой файл"]
-        for keyword in p_keywords:
-            f = f.replace(keyword, "").strip()
+        voice.va_speak("Назовите файл для открытия")
+        f = str(input())
         open_file_or_folder(f)
     elif cmd == "creat_file":
-        voice.va_speak("Записываю")
-        name = str(voice_text)
-        content = str(voice_text)
-        p_keywords = ["джарвис", "запиши текст"]
-        for keyword in p_keywords:
-            name = name.replace(keyword, "").strip()
-        d_keywords = ["джарвис", "запиши текст",str(name)]
-        for keyword in d_keywords:
-            content = content.replace(keyword, "").strip()
+        voice.va_speak("Введите название файла")
+        name = str(input())
+        voice.va_speak("Введите содержимое файла")
+        content = str(input())
         quick_txt(name, content)
+    elif cmd == "volume":
+        voice.va_speak("Назовите какое значение громкости нужно установить")
+        f = int(input())
+        sound.Sound.volume_set(f)
 
 def quick_txt(name, content):#сюда голосовой ввод
     path = os.path.join(os.path.expanduser("~"), "Documents", name + '.txt')
@@ -183,9 +175,13 @@ def timer(a):
         #тут можно сделать озвучку мол таймер не запущен
         return
     # Обратный отсчет
+    text = "Осталось " + num2words(total_seconds, lang="ru") + "секунд"
+    voice.va_speak(text)
     while total_seconds > 0:
         time.sleep(1)
         total_seconds -= 1 
+        if total_seconds == 0:
+            voice.va_speak("Таймер истёк")
 
 def google(a):
     # Запрос на гугл
