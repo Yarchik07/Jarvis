@@ -49,11 +49,14 @@ def recognize_cmd(cmd: str):
 def execute_cmd(cmd: str, voice_text: str = ""):
     if cmd == "help":
         text = "Я умею: . . ."
-        text += "подсказать время . . ."
+        text += "подсказать время и дату"
         text += "поведать мудрость . . ."
-        text += "открывать браузер"
-        text += "узнать погоду"
-        text += "искать на рутубе"
+        text += "узнать погоду и новости"
+        text += "искать на рутубе, в википедии и гугле"
+        text += "настраивать громкость, выключать компьютер"
+        text += "устанавливать таймер"
+        text += "делать скриншот"
+        text += "озвучить содержимое файла а также открыть его и создать новый"
         voice.va_speak(text)
         pass
     elif cmd == "ctime":
@@ -121,6 +124,12 @@ def execute_cmd(cmd: str, voice_text: str = ""):
         voice.va_speak("Назовите какое значение громкости нужно установить")
         f = int(input())
         sound.Sound.volume_set(f)
+    elif cmd == "off":
+        off_system()
+
+def off_system():
+    voice.va_speak("Система отключится через десять секунд")
+    os.system("shutdown /s /t 10")
 
 def quick_txt(name, content):#сюда голосовой ввод
     path = os.path.join(os.path.expanduser("~"), "Documents", name + '.txt')
