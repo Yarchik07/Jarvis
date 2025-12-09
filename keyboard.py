@@ -1,9 +1,6 @@
-"""
-C struct definitions credit
-
-Author: LucasG (https://github.com/lucasg)
-Source: http://stackoverflow.com/questions/13564851/generate-keyboard-events
-"""
+"""Определения C-структур
+Автор: LucasG (https://github.com/lucasg)
+Источник: http://stackoverflow.com/questions/13564851/generate-keyboard-events"""
 
 import time
 import ctypes
@@ -54,13 +51,9 @@ class Input(ctypes.Structure):
     ]
 
 class Keyboard:
-    """
-    Class Keyboard
+    """Класс Keyboard (Клавиатура)
     :author: Paradoxis <luke@paradoxis.nl>
-    :description:
-
-    Keyboard methods to trigger fake key events
-    """
+    Методы клавиатуры для имитации нажатий клавиш"""
 
     # Keyboard key constants
     # More information: https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
@@ -243,11 +236,8 @@ class Keyboard:
     VK_OEM_CLEAR = 0xFE
 
     def keyDown(keyCode):
-        """
-        Key down wrapper
-        :param keyCode: int
-        :return: void
-        """
+        """Обертка для нажатия клавиши
+        :param keyCode: код клавиши"""
         extra = ctypes.c_ulong(0)
         ii_ = Input_I()
         ii_.ki = KeyBdInput(keyCode, 0x48, 0, 0, ctypes.pointer(extra) )
@@ -255,11 +245,8 @@ class Keyboard:
         SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
     def keyUp(keyCode):
-        """
-        Key up wrapper
-        :param keyCode: int
-        :return: void
-        """
+        """Обертка для отпускания клавиши
+        :param keyCode: код клавиши (целое число)"""
         extra = ctypes.c_ulong(0)
         ii_ = Input_I()
         ii_.ki = KeyBdInput(keyCode, 0x48, 0x0002, 0, ctypes.pointer(extra) )
@@ -267,12 +254,9 @@ class Keyboard:
         SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
     def key(keyCode, length = 0):
-        """
-        Type a key
-        :param keyCode: int
-        :param length: int
-        :return:
-        """
+        """Нажатие клавиши с заданной длительностью
+        :param keyCode: код клавиши (целое число)
+        :param length: длительность нажатия в секундах (целое число или float)"""
         Keyboard.keyDown(keyCode)
         time.sleep(length)
         Keyboard.keyUp(keyCode)
