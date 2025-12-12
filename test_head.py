@@ -1,4 +1,4 @@
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 from unittest.mock import mock_open
 from unittest.mock import call
 from head import quick_txt
@@ -8,7 +8,11 @@ from unittest.mock import MagicMock
 from head import wikipedia
 from head import rutube
 from head import google
+from head import screenshot
 from urllib.parse import quote
+import os
+import datetime
+from PIL import Image
 import pytest
 import webbrowser
 
@@ -184,3 +188,34 @@ def test_google_2():
         calls = mock_browser.call_args_list
         assert "кошки" in quote.decode(calls[0][0][0].split("q=")[1])
         assert "собаки" in quote.decode(calls[1][0][0].split("q=")[1])
+
+from unittest.mock import patch, MagicMock
+
+def test_screenshot1():
+    """Просто проверяем что функция выполняется"""
+    # Мокаем только самое необходимое
+    with patch('os.path.exists', return_value=True), \
+         patch('PIL.ImageGrab.grab', return_value=MagicMock()), \
+         patch('os.startfile'):
+        
+        # Вызываем - если не упадет, тест пройден
+        result = screenshot()
+        assert result is not None
+
+
+def test_screenshot2():
+    """Проверяем что функция возвращает правильное сообщение"""
+    # Минимальные моки
+    mock_image = MagicMock()
+    mock_image.size = (100, 100)
+    
+    with patch('os.path.exists', return_value=True), \
+         patch('PIL.ImageGrab.grab', return_value=mock_image), \
+         patch('os.startfile'):
+        
+        result = screenshot()
+        
+        # Проверяем что возвращается строка с сообщением
+        assert isinstance(result, str)
+        assert "скриншот" in result.lower()
+
