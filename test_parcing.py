@@ -19,7 +19,6 @@ def test_get_weather_by_ip_1():
 
         result = get_weather_by_ip()
 
-        # Простая проверка структуры
         assert isinstance(result, tuple)
         assert len(result) == 3
 
@@ -35,9 +34,9 @@ def test_get_weather_by_ip_2():
         'parcing.requests.get',
         side_effect=[mock_response, mock_response]
     ), patch('parcing.re.findall', side_effect=[
-        ['+15°'],       # temperatures - есть
-        [],             # wind - пусто
-        ['755 мм']      # pressure - есть
+        ['+15°'],       
+        [],             
+        ['755 мм']      
     ]):
 
         temp, wind, pressure = get_weather_by_ip()
@@ -94,7 +93,6 @@ def test_get_datetime2():
 
         with patch('parcing.BeautifulSoup', return_value=mock_soup):
             result = get_datetime()
-            # Просто проверяем тип
             assert isinstance(result, str)
 
 
@@ -110,7 +108,6 @@ def test_get_news_from_lenta_working1():
         mock_soup = MagicMock()
         mock_soup.find_all.return_value = []
         with patch('parcing.BeautifulSoup', return_value=mock_soup):
-            # Если не упало - хорошо
             result = get_news_from_lenta_working()
             assert result is not None
 
@@ -143,8 +140,6 @@ def test_get_news_from_lenta_working2():
 
         result = get_news_from_lenta_working()
 
-        # Должен быть список
         assert isinstance(result, list)
-        # Все элементы должны быть строками
         for item in result:
             assert isinstance(item, str)
