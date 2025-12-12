@@ -270,7 +270,6 @@ def open_file_or_folder(name):
     :raises PermissionError: Если нет доступа к некоторым директориям
     :raises Exception: Если возникнут другие ошибки при открытии файла
     """
-    # Диски для поиска
     drives = ['C:', 'D:', 'E:', 'F:', 'G:']
 
     for drive in drives:
@@ -319,7 +318,6 @@ def read_txt_files(name):
                         text = f.read()
                         print(text)
                         voice.va_speak(text)
-                # функция работает по принципу поиска файлов
 
 
 def timer(a):
@@ -334,15 +332,13 @@ def timer(a):
     :raises Exception: Если возникнут ошибки при голосовом воспроизведении
     :raises ImportError: Если модуль num2words не установлен
     """
-    minutes = a  # ввод в виде int
+    minutes = a  
     total_seconds = minutes * 60
 
     if total_seconds <= 0:
         voice.va_speak("Таймер не запущен")
-        # тут можно сделать озвучку мол таймер не запущен
         return
 
-    # Обратный отсчет
     text = "Осталось " + num2words(total_seconds, lang="ru") + "секунд"
     voice.va_speak(text)
 
@@ -366,10 +362,9 @@ def google(a):
     :raises webbrowser.Error: Если возникнут проблемы с открытием браузера
     :raises ImportError: Если модули urllib.parse или webbrowser не доступны
     """
-    # Запрос на гугл
     zapros = a
 
-    # Переводим запрос в ссылку, чтобы браузер распозновал
+    # Переводим запрос в ссылку, чтобы браузер распознавал
     zaprosurl = quote(zapros)
 
     # Ссылка на наш запрос
@@ -391,7 +386,6 @@ def wikipedia(a):
     :raises webbrowser.Error: Если возникнут проблемы с открытием браузера
     :raises ImportError: Если модуль urllib.parse или webbrowser не доступен
     """
-    # Запрос для википедии
     zapros = a
 
     # Переводим запрос в ссылку, чтобы браузер распознавал
@@ -453,7 +447,7 @@ def screenshot():
         screenshot_image = ImageGrab.grab()
         print(f"Скриншот сделан, размер: {screenshot_image.size}")
 
-        # Сохраняем с явным указанием формата
+        # Сохраняем с указанием формата
         screenshot_image.save(file, "PNG")
 
         # Проверяем результат
@@ -471,4 +465,4 @@ def screenshot():
 
 
 # начать прослушивание команд
-Beta.va_listen(va_respond)
+#Beta.va_listen(va_respond)
