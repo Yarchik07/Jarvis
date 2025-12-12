@@ -13,7 +13,7 @@ sample_rate = 48000
 speaker = "aidar"
 put_accent = True
 put_yo = True
-device = torch.device("cpu")  # cpu или gpu
+device = torch.device("cpu")
 text = "Здарова"
 
 model, _ = torch.hub.load(
