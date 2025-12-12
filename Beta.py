@@ -9,7 +9,7 @@ import queue
 import json
 
 model = vosk.Model("model_small")
-samplerate = 16000  # рекомендуют от 8 до 16Hz
+samplerate = 16000  
 device = 1  # id микрофона (тест проводился еще до момента создания Alpha)
 
 q = queue.Queue()
