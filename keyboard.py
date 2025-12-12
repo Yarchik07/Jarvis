@@ -1,6 +1,8 @@
-"""Определения C-структур
+"""
+Определения C-структур.
 Автор: LucasG (https://github.com/lucasg)
-Источник: http://stackoverflow.com/questions/13564851/generate-keyboard-events"""
+Источник: http://stackoverflow.com/questions/13564851/generate-keyboard-events
+"""
 
 import time
 import ctypes
@@ -11,7 +13,9 @@ SendInput = ctypes.windll.user32.SendInput
 # C struct redefinitions
 PUL = ctypes.POINTER(ctypes.c_ulong)
 
+
 class KeyBdInput(ctypes.Structure):
+    """Структура для ввода с клавиатуры."""
     _fields_ = [
         ("wVk", ctypes.c_ushort),
         ("wScan", ctypes.c_ushort),
@@ -20,43 +24,56 @@ class KeyBdInput(ctypes.Structure):
         ("dwExtraInfo", PUL)
     ]
 
+
 class HardwareInput(ctypes.Structure):
+    """Структура для аппаратного ввода."""
     _fields_ = [
         ("uMsg", ctypes.c_ulong),
         ("wParamL", ctypes.c_short),
         ("wParamH", ctypes.c_ushort)
     ]
 
+
 class MouseInput(ctypes.Structure):
+    """Структура для ввода мыши."""
     _fields_ = [
         ("dx", ctypes.c_long),
         ("dy", ctypes.c_long),
         ("mouseData", ctypes.c_ulong),
         ("dwFlags", ctypes.c_ulong),
-        ("time",ctypes.c_ulong),
+        ("time", ctypes.c_ulong),
         ("dwExtraInfo", PUL)
     ]
 
+
 class Input_I(ctypes.Union):
+    """Объединение входных структур."""
     _fields_ = [
         ("ki", KeyBdInput),
         ("mi", MouseInput),
         ("hi", HardwareInput)
     ]
 
+
 class Input(ctypes.Structure):
+    """Основная структура ввода."""
     _fields_ = [
         ("type", ctypes.c_ulong),
         ("ii", Input_I)
     ]
 
-class Keyboard:
-    """Класс Keyboard (Клавиатура)
-    :author: Paradoxis <luke@paradoxis.nl>
-    Методы клавиатуры для имитации нажатий клавиш"""
 
+class Keyboard:
+    """
+    Класс Keyboard (Клавиатура)
+    :author: Paradoxis <luke@paradoxis.nl>
+
+    Методы клавиатуры для имитации нажатий клавиш.
+    """
     # Keyboard key constants
-    # More information: https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
+    # More information:
+    # https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
+
     VK_BACKSPACE = 0x08
     VK_ENTER = 0x0D
     VK_CTRL = 0x11
@@ -235,28 +252,40 @@ class Keyboard:
     VK_PA1 = 0xFD
     VK_OEM_CLEAR = 0xFE
 
+    @staticmethod
     def keyDown(keyCode):
-        """Обертка для нажатия клавиши
-        :param keyCode: код клавиши"""
+        """
+        Обертка для нажатия клавиши.
+
+        :param keyCode: код клавиши
+        """
         extra = ctypes.c_ulong(0)
         ii_ = Input_I()
-        ii_.ki = KeyBdInput(keyCode, 0x48, 0, 0, ctypes.pointer(extra) )
-        x = Input( ctypes.c_ulong(1), ii_ )
+        ii_.ki = KeyBdInput(keyCode, 0x48, 0, 0, ctypes.pointer(extra))
+        x = Input(ctypes.c_ulong(1), ii_)
         SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
+    @staticmethod
     def keyUp(keyCode):
-        """Обертка для отпускания клавиши
-        :param keyCode: код клавиши (целое число)"""
+        """
+        Обертка для отпускания клавиши.
+
+        :param keyCode: код клавиши (целое число)
+        """
         extra = ctypes.c_ulong(0)
         ii_ = Input_I()
-        ii_.ki = KeyBdInput(keyCode, 0x48, 0x0002, 0, ctypes.pointer(extra) )
-        x = Input( ctypes.c_ulong(1), ii_ )
+        ii_.ki = KeyBdInput(keyCode, 0x48, 0x0002, 0, ctypes.pointer(extra))
+        x = Input(ctypes.c_ulong(1), ii_)
         SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
-    def key(keyCode, length = 0):
-        """Нажатие клавиши с заданной длительностью
+    @staticmethod
+    def key(keyCode, length=0):
+        """
+        Нажатие клавиши с заданной длительностью.
+
         :param keyCode: код клавиши (целое число)
-        :param length: длительность нажатия в секундах (целое число или float)"""
+        :param length: длительность нажатия в секундах (целое число или float)
+        """
         Keyboard.keyDown(keyCode)
         time.sleep(length)
         Keyboard.keyUp(keyCode)
