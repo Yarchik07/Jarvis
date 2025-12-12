@@ -29,7 +29,6 @@ def test_read_txt_files():
             ('C:\\Users\\Test', [], ['test.txt', 'other.txt'])
         ]
 
-        # Запускаем функцию
         read_txt_files('test')
 
         # Проверяем что голос был вызван с правильным текстом
@@ -44,7 +43,6 @@ def test_read_txt_files_no():
         # Пустые результаты поиска
         mock_walk.return_value = []
 
-        # Запускаем функцию
         read_txt_files('несуществующий')
 
         # Проверяем что голос НЕ был вызван
@@ -57,7 +55,6 @@ def test_timer():
             patch('head.num2words', return_value="шестьдесят"), \
             patch('time.sleep'):
 
-        # Запускаем таймер на 1 минуту
         timer(1)
 
         # Проверяем что были вызовы озвучки
@@ -70,7 +67,6 @@ def test_timer_not_started():
     with patch('voice.va_speak') as mock_voice, \
             patch('time.sleep') as mock_sleep:
 
-        # Запускаем таймер с 0 минут
         timer(0)
 
         # Проверяем только сообщение о не запуске
@@ -86,7 +82,6 @@ def test_wikipedia():
     mock_open_browser = MagicMock()
 
     with patch('webbrowser.open', mock_open_browser):
-        # Вызываем функцию с тестовым запросом
         wikipedia("Искусственный интеллект")
 
         # Проверяем что функция открытия браузера вызвана
@@ -117,7 +112,6 @@ def test_rutube_2():
         rutube("кошки видео")
 
         url = mock_open_browser.call_args[0][0]
-        # Простая проверка
         expected_query = quote("кошки видео")
         expected_url = f"https://rutube.ru/search/video/?query={expected_query}"
         assert url == expected_url
@@ -129,7 +123,6 @@ def test_google1():
     mock_browser = MagicMock()
 
     with patch('webbrowser.open', mock_browser):
-        # Вызываем функцию
         google("как научиться программировать")
 
         # Проверяем вызов
@@ -151,7 +144,6 @@ def test_google_2():
     mock_browser = MagicMock()
 
     with patch('webbrowser.open', mock_browser):
-        # Несколько вызовов
         google("кошки")
         google("собаки")
         google("птицы")
