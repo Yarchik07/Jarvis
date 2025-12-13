@@ -43,8 +43,6 @@ def va_listen(callback):
 
     :param callback: Функция, которая будет вызвана при успешном распознавании речи
     :type callback: callable[str] -> None
-    :raises sd.PortAudioError: При ошибках инициализации аудиоустройства
-    :raises Exception: При других ошибках в процессе распознавания
     """
     with sd.RawInputStream(
         samplerate=samplerate,
