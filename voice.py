@@ -32,8 +32,6 @@ def va_speak(what: str):
 
     :param what: Текст для преобразования в речь
     :type what: str
-    :raises ImportError: Если отсутствуют модули TTS или звукового воспроизведения
-    :raises Exception: Если возникнут ошибки при синтезе или воспроизведении речи
     """
     audio = model.apply_tts(
         text=what + "..",
