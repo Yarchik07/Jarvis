@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sound.Sound</title>
+    <meta name="generator" content="pydoctor 25.10.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+    
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          sound <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="sound.Sound.html" class="internal-link" title="This class"><wbr></wbr>Sound</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#current_volume" class="internal-link" title="sound.Sound.current_volume">current<wbr></wbr>_volume</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#is_muted" class="internal-link" title="sound.Sound.is_muted">is<wbr></wbr>_muted</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#mute" class="internal-link" title="sound.Sound.mute">mute</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#volume_down" class="internal-link" title="sound.Sound.volume_down">volume<wbr></wbr>_down</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#volume_max" class="internal-link" title="sound.Sound.volume_max">volume<wbr></wbr>_max</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#volume_min" class="internal-link" title="sound.Sound.volume_min">volume<wbr></wbr>_min</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#volume_set" class="internal-link" title="sound.Sound.volume_set">volume<wbr></wbr>_set</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#volume_up" class="internal-link" title="sound.Sound.volume_up">volume<wbr></wbr>_up</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__set_current_volume" class="internal-link" title="sound.Sound.__set_current_volume">__set<wbr></wbr>_current<wbr></wbr>_volume</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__track" class="internal-link" title="sound.Sound.__track">__track</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__current_volume" class="internal-link" title="sound.Sound.__current_volume">__current<wbr></wbr>_volume</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__is_muted" class="internal-link" title="sound.Sound.__is_muted">__is<wbr></wbr>_muted</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="index.html" class="internal-link" title="The parent of this class">sound</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sound.Sound.html" class="internal-link" title="sound.Sound"><wbr></wbr>Sound</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapse-sidebar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <main class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">sound</a></code><wbr></wbr>.<code><a href="sound.Sound.html" class="internal-link" title="sound.Sound">Sound</a></code></code></h1>
+          <div id="show-private">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">Sound</span>:</code></p><p><a href="classIndex.html#sound.Sound">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p>Класс Sound (Звук)
+:author: Paradoxis &lt;<a class="rst-external rst-reference" href="mailto:luke@paradoxis.nl" target="_top">luke@paradoxis.nl</a>&gt;</p>
+<p>Позволяет управлять громкостью звука в Windows.
+При первом вызове любого метода класса системная громкость полностью сбрасывается.
+Это активирует отслеживание звука и состояния отключения звука.</p>
+</div>
+        </div>
+
+        <div id="split-tables">
+          <table class="children sortable" id="id2">
+  
+  
+  <tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#current_volume" class="internal-link" title="sound.Sound.current_volume">current<wbr></wbr>_volume</a></code></td>
+    <td>Получить текущую громкость.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#is_muted" class="internal-link" title="sound.Sound.is_muted">is<wbr></wbr>_muted</a></code></td>
+    <td>Получить состояние отключения звука.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#mute" class="internal-link" title="sound.Sound.mute">mute</a></code></td>
+    <td>Отключить или включить системные звуки.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#volume_down" class="internal-link" title="sound.Sound.volume_down">volume<wbr></wbr>_down</a></code></td>
+    <td>Уменьшить громкость системы.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#volume_max" class="internal-link" title="sound.Sound.volume_max">volume<wbr></wbr>_max</a></code></td>
+    <td>Установить максимальную громкость (100).</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#volume_min" class="internal-link" title="sound.Sound.volume_min">volume<wbr></wbr>_min</a></code></td>
+    <td>Установить минимальную громкость (0).</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#volume_set" class="internal-link" title="sound.Sound.volume_set">volume<wbr></wbr>_set</a></code></td>
+    <td>Установить громкость на конкретное значение.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#volume_up" class="internal-link" title="sound.Sound.volume_up">volume<wbr></wbr>_up</a></code></td>
+    <td>Увеличить громкость системы.</td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="#__set_current_volume" class="internal-link" title="sound.Sound.__set_current_volume">__set<wbr></wbr>_current<wbr></wbr>_volume</a></code></td>
+    <td>Установить текущую громкость.</td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="#__track" class="internal-link" title="sound.Sound.__track">__track</a></code></td>
+    <td>Начать отслеживание настроек звука и отключения звука.</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__current_volume" class="internal-link" title="sound.Sound.__current_volume">__current<wbr></wbr>_volume</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__is_muted" class="internal-link" title="sound.Sound.__is_muted">__is<wbr></wbr>_muted</a></code></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="child-list">
+          <div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.current_volume">
+    
+  </a>
+  <a name="current_volume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">current_volume</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#current_volume" title="sound.Sound.current_volume">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Получить текущую громкость.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">int</td><td class="fieldArgDesc">текущий уровень громкости (целое число)</td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.is_muted">
+    
+  </a>
+  <a name="is_muted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">is_muted</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#is_muted" title="sound.Sound.is_muted">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Получить состояние отключения звука.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">bool</td><td class="fieldArgDesc">отключен ли звук</td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.mute">
+    
+  </a>
+  <a name="mute">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">mute</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#mute" title="sound.Sound.mute">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Отключить или включить системные звуки.</p>
+<p>Выполняется путем имитации нажатия клавиши VK_VOLUME_MUTE.</p>
+</div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.volume_down">
+    
+  </a>
+  <a name="volume_down">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">volume_down</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#volume_down" title="sound.Sound.volume_down">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Уменьшить громкость системы.</p>
+<p>Выполняется путем имитации нажатия клавиши VK_VOLUME_DOWN.</p>
+</div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.volume_max">
+    
+  </a>
+  <a name="volume_max">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">volume_max</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#volume_max" title="sound.Sound.volume_max">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Установить максимальную громкость (100).</p></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.volume_min">
+    
+  </a>
+  <a name="volume_min">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">volume_min</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#volume_min" title="sound.Sound.volume_min">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Установить минимальную громкость (0).</p></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.volume_set">
+    
+  </a>
+  <a name="volume_set">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">volume_set</span><span class="function-signature">(<span class="rst-sig-param">amount</span>):</span>
+    
+    <a class="headerLink" href="#volume_set" title="sound.Sound.volume_set">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Установить громкость на конкретное значение.</p>
+<p>Ограничено четными числами. Это связано с тем, что событие
+VK_VOLUME_UP/VK_VOLUME_DOWN изменяет громкость на два деления каждый раз.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">amount:</span>int</td><td class="fieldArgDesc">уровень громкости для установки (целое число)</td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="sound.Sound.volume_up">
+    
+  </a>
+  <a name="volume_up">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">volume_up</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#volume_up" title="sound.Sound.volume_up">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Увеличить громкость системы.</p>
+<p>Выполняется путем имитации нажатия клавиши VK_VOLUME_UP.</p>
+</div>
+  </div>
+</div><div class="basestaticmethod private">
+  
+  
+  <a name="sound.Sound.__set_current_volume">
+    
+  </a>
+  <a name="__set_current_volume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__set_current_volume</span><span class="function-signature">(<span class="rst-sig-param">volume</span>):</span>
+    
+    <a class="headerLink" href="#__set_current_volume" title="sound.Sound.__set_current_volume">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Установить текущую громкость.</p>
+<p>Предотвращает установку значений больше 100 и меньше 0.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">volume:</span>int</td><td class="fieldArgDesc">уровень громкости для установки</td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod private">
+  
+  
+  <a name="sound.Sound.__track">
+    
+  </a>
+  <a name="__track">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <div><span class="decorator">@staticmethod<br /></span></div>
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__track</span><span class="function-signature">():</span>
+    
+    <a class="headerLink" href="#__track" title="sound.Sound.__track">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Начать отслеживание настроек звука и отключения звука.</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sound.Sound.__current_volume">
+    
+  </a>
+  <a name="__current_volume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__current_volume</span> =
+    
+    <a class="headerLink" href="#__current_volume" title="sound.Sound.__current_volume">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sound.Sound.__is_muted">
+    
+  </a>
+  <a name="__is_muted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__is_muted</span>: <code>bool</code> =
+    
+    <a class="headerLink" href="#__is_muted" title="sound.Sound.__is_muted">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </main>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container-fluid">
+    <a href="index.html">API Documentation</a> for sound,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    25.10.1 at 2025-12-13 15:40:21.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
