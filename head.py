@@ -31,8 +31,6 @@ def va_respond(voice: str):
 
     :param voice: Распознанный текст голосовой команды
     :type voice: str
-    :raises KeyError: Если команда не найдена в конфигурации
-    :raises Exception: При ошибках выполнения команды
     """
     print(voice)
 
@@ -102,8 +100,6 @@ def execute_cmd(cmd: str, voice_text: str = ""):
     :param voice_text: Оригинальный текст голосовой команды
                       (для извлечения параметров)
     :type voice_text: str
-    :raises ValueError: При некорректном вводе числовых параметров
-    :raises Exception: При ошибках выполнения конкретных команд
     """
     if cmd == "help":
         text = "Я умею: . . ."
@@ -223,8 +219,6 @@ def off_system():
 
     :returns: None
     :type: None
-    :raises OSError: Если возникнут проблемы с выполнением системной команды.
-    :raises Exception: Если возникнут проблемы с голосовым синтезом.
     """
     voice.va_speak("Система отключится через десять секунд")
     os.system("shutdown /s /t 10")
@@ -241,9 +235,6 @@ def quick_txt(name, content):
     :type content: str
     :returns: Полный путь к созданному файлу
     :rtype: str
-    :raises OSError: Если возникнут проблемы с созданием файла
-                     или доступом к папке Documents
-    :raises UnicodeEncodeError: Если возникнут проблемы с кодировкой текста в UTF-8
     """
     path = os.path.join(
         os.path.expanduser("~"),
@@ -266,9 +257,6 @@ def open_file_or_folder(name):
     :type name: str
     :returns: True, если файл или папка найдены и успешно открыты, иначе False
     :rtype: bool
-    :raises OSError: Если возникнут проблемы с доступом к дискам или файловой системе
-    :raises PermissionError: Если нет доступа к некоторым директориям
-    :raises Exception: Если возникнут другие ошибки при открытии файла
     """
     drives = ['C:', 'D:', 'E:', 'F:', 'G:']
 
@@ -299,11 +287,6 @@ def read_txt_files(name):
     :type name: str
     :returns: None
     :rtype: None
-    :raises OSError: Если возникнут проблемы с доступом к дискам или файловой системе
-    :raises FileNotFoundError: Если найденный файл не существует
-    :raises PermissionError: Если нет доступа к файлу
-    :raises UnicodeDecodeError: Если возникнут проблемы с декодированием файла в UTF-8
-    :raises Exception: Если возникнут ошибки при чтении файла или голосовом воспроизведении
     """
     drives = ['C:', 'D:', 'E:']
 
@@ -328,9 +311,6 @@ def timer(a):
     :type a: int
     :returns: None
     :rtype: None
-    :raises ValueError: Если переданный параметр не является положительным числом
-    :raises Exception: Если возникнут ошибки при голосовом воспроизведении
-    :raises ImportError: Если модуль num2words не установлен
     """
     minutes = a  
     total_seconds = minutes * 60
@@ -359,8 +339,6 @@ def google(a):
     :type a: str
     :returns: None
     :rtype: bool
-    :raises webbrowser.Error: Если возникнут проблемы с открытием браузера
-    :raises ImportError: Если модули urllib.parse или webbrowser не доступны
     """
     zapros = a
 
@@ -383,8 +361,6 @@ def wikipedia(a):
     :type a: str
     :returns: None
     :rtype: None
-    :raises webbrowser.Error: Если возникнут проблемы с открытием браузера
-    :raises ImportError: Если модуль urllib.parse или webbrowser не доступен
     """
     zapros = a
 
@@ -406,8 +382,6 @@ def rutube(a):
     :type a: str
     :returns: None
     :rtype: None
-    :raises webbrowser.Error: Если возникнут проблемы с открытием браузера
-    :raises ImportError: Если модуль urllib.parse или webbrowser не доступен
     """
     zapros = a
     zaprosurl = quote(zapros)
@@ -425,10 +399,6 @@ def screenshot():
 
     :returns: Сообщение о результате операции или сообщение об ошибке
     :rtype: str
-    :raises ImportError: Если отсутствует модуль PIL (Pillow)
-    :raises OSError: Если возникнут проблемы с доступом к файловой системе
-    :raises PermissionError: Если нет прав на создание папки или сохранение файла
-    :raises Exception: Если возникнут другие ошибки при создании скриншота
     """
     try:
         desktop = os.path.join(os.path.expanduser("~"), "Desktop")
